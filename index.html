@@ -1,0 +1,903 @@
+<html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Lucentia Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:    #0D0E1A;
+    --navy2:   #13152B;
+    --lavender:#C4B5F4;
+    --coral:   #FF6B6B;
+    --cream:   #FAF7F2;
+    --sage:    #8ECFB0;
+    --muted:   #6B6F8A;
+    --card:    #171930;
+  }
+
+html{
+scroll-behavior:smooth;
+}
+
+  body {
+    background: var(--navy);
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 5vw;
+    background: rgba(13,14,26,0.7);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid rgba(196,181,244,0.1);
+  }
+  .logo {
+    font-family: 'Fraunces', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--cream);
+  }
+  .logo span { color: var(--lavender); font-style: italic; }
+  nav ul { list-style: none; display: flex; gap: 2.5rem; }
+  nav ul a {
+    text-decoration: none;
+    color: var(--cream);
+    opacity: 0.7;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: opacity 0.2s;
+  }
+  nav ul a:hover { opacity: 1; }
+  .nav-cta {
+    background: var(--lavender);
+    color: var(--navy) !important;
+    opacity: 1 !important;
+    padding: 0.55rem 1.4rem;
+    border-radius: 50px;
+    font-weight: 600 !important;
+    transition: transform 0.2s, box-shadow 0.2s !important;
+  }
+  .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(196,181,244,0.35) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+    padding: 8rem 5vw 5rem;
+    text-align: center;
+  }
+  .blobs {
+    position: absolute; inset: 0; pointer-events: none;
+  }
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    animation: drift 12s ease-in-out infinite alternate;
+    opacity: 0.35;
+  }
+  .blob-1 { width: 520px; height: 520px; background: var(--lavender); top: -15%; left: -12%; animation-duration: 14s; }
+  .blob-2 { width: 380px; height: 380px; background: var(--coral);    bottom: -10%; right: -8%;  animation-duration: 10s; animation-delay: -3s; }
+  .blob-3 { width: 280px; height: 280px; background: var(--sage);     top: 40%;    left: 55%;   animation-duration: 16s; animation-delay: -6s; }
+
+  @keyframes drift {
+    0%   { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(40px, 30px) scale(1.08); }
+  }
+
+  .hero-inner { position: relative; z-index: 2; max-width: 860px; }
+
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(196,181,244,0.12);
+    border: 1px solid rgba(196,181,244,0.25);
+    border-radius: 50px;
+    padding: 0.4rem 1rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--lavender);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+  .hero-eyebrow::before { content: '✦'; font-size: 0.7rem; }
+
+  .hero-headline {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    line-height: 1.0;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.8rem;
+  }
+  .hero-headline .hl-light { font-weight: 300; font-style: italic; color: var(--lavender); }
+  .hero-headline .hl-coral { color: var(--coral); }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2.2vw, 1.2rem);
+    color: rgba(250,247,242,0.65);
+    max-width: 540px;
+    margin: 0 auto 3rem;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--lavender);
+    color: var(--navy);
+    padding: 1rem 2.2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(196,181,244,0.4); }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--cream);
+    padding: 1rem 2.2rem;
+    border-radius: 50px;
+    border: 1px solid rgba(250,247,242,0.2);
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .btn-ghost:hover { border-color: rgba(250,247,242,0.5); background: rgba(250,247,242,0.05); }
+
+  /* ── MARQUEE ── */
+  .marquee-strip {
+    background: var(--lavender);
+    overflow: hidden;
+    padding: 0.9rem 0;
+    white-space: nowrap;
+  }
+  .marquee-inner {
+    display: inline-flex; gap: 3rem;
+    animation: scroll-left 22s linear infinite;
+  }
+  .marquee-item {
+    font-family: 'Fraunces', serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--navy);
+    display: inline-flex; align-items: center; gap: 1rem;
+    letter-spacing: 0.01em;
+  }
+  .marquee-item::after { content: '✦'; font-size: 0.7rem; opacity: 0.5; }
+  @keyframes scroll-left {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 7rem 5vw; }
+  .section-label {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    color: var(--lavender);
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 1rem;
+  }
+  .section-label::before { content: ''; width: 24px; height: 2px; background: var(--lavender); border-radius: 2px; }
+
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.2rem;
+  }
+  .section-title em { font-style: italic; color: var(--lavender); font-weight: 300; }
+  .section-title .coral { color: var(--coral); }
+
+  .section-desc {
+    color: rgba(250,247,242,0.6);
+    font-size: 1rem;
+    max-width: 520px;
+    line-height: 1.75;
+  }
+
+  /* ── SERVICES ── */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 4rem;
+  }
+
+  .service-card {
+    background: var(--card);
+    border: 1px solid rgba(196,181,244,0.1);
+    border-radius: 20px;
+    padding: 2.2rem;
+    transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+    position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    border-radius: 20px 20px 0 0;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .service-card.lavender::before { background: linear-gradient(90deg, var(--lavender), #a78bfa); }
+  .service-card.coral::before    { background: linear-gradient(90deg, var(--coral), #ff9a9a); }
+  .service-card.sage::before     { background: linear-gradient(90deg, var(--sage), #6ee7b7); }
+
+  .service-card:hover { transform: translateY(-6px); border-color: rgba(196,181,244,0.25); box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
+  .service-card:hover::before { opacity: 1; }
+
+  .card-icon {
+    width: 52px; height: 52px;
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+  }
+  .card-icon.lav-bg  { background: rgba(196,181,244,0.15); }
+  .card-icon.coral-bg{ background: rgba(255,107,107,0.15); }
+  .card-icon.sage-bg { background: rgba(142,207,176,0.15); }
+
+  .card-tag {
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.6rem;
+    opacity: 0.6;
+  }
+  .service-card.lavender .card-tag { color: var(--lavender); }
+  .service-card.coral .card-tag    { color: var(--coral); }
+  .service-card.sage .card-tag     { color: var(--sage); }
+
+  .card-title {
+    font-family: 'Fraunces', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    line-height: 1.2;
+  }
+  .card-body { font-size: 0.9rem; color: rgba(250,247,242,0.55); line-height: 1.7; margin-bottom: 1.5rem; }
+
+  .pill-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .pill {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 50px;
+    font-weight: 500;
+    border: 1px solid;
+  }
+  .pill.lav  { color: var(--lavender); border-color: rgba(196,181,244,0.3); background: rgba(196,181,244,0.08); }
+  .pill.cor  { color: var(--coral);    border-color: rgba(255,107,107,0.3); background: rgba(255,107,107,0.08); }
+  .pill.sag  { color: var(--sage);     border-color: rgba(142,207,176,0.3); background: rgba(142,207,176,0.08); }
+
+  /* ── SUB SERVICES TABS ── */
+  .tabs-wrap { margin-top: 4rem; }
+  .tabs-nav {
+    display: flex; gap: 0.5rem; flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+    border-bottom: 1px solid rgba(196,181,244,0.1);
+    padding-bottom: 0rem;
+  }
+  .tab-btn {
+    background: none; border: none; cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: rgba(250,247,242,0.45);
+    padding: 0.7rem 1.3rem;
+    border-radius: 8px 8px 0 0;
+    transition: color 0.2s, background 0.2s;
+    position: relative; bottom: -1px;
+    border-bottom: 2px solid transparent;
+  }
+  .tab-btn.active {
+    color: var(--lavender);
+    border-bottom-color: var(--lavender);
+  }
+  .tab-btn:hover { color: var(--cream); }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+
+  .sub-card {
+    background: var(--card);
+    border: 1px solid rgba(196,181,244,0.08);
+    border-radius: 14px;
+    padding: 1.4rem;
+    display: flex; align-items: flex-start; gap: 0.75rem;
+    transition: border-color 0.2s;
+  }
+  .sub-card:hover { border-color: rgba(196,181,244,0.2); }
+  .sub-icon { font-size: 1.3rem; line-height: 1; flex-shrink: 0; }
+  .sub-text { font-size: 0.88rem; color: rgba(250,247,242,0.7); line-height: 1.4; }
+
+  /* ── PROCESS ── */
+  .process-bg { background: var(--navy2); }
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+    margin-top: 4rem;
+    position: relative;
+  }
+  .step {
+    text-align: center;
+    padding: 2rem 1.5rem;
+  }
+  .step-num {
+    font-family: 'Fraunces', serif;
+    font-size: 4rem;
+    font-weight: 900;
+    font-style: italic;
+    line-height: 1;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--lavender), var(--coral));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .step-title {
+    font-family: 'Fraunces', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+  }
+  .step-desc { font-size: 0.88rem; color: rgba(250,247,242,0.5); line-height: 1.65; }
+
+  /* ── WHY US ── */
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 4rem;
+  }
+  @media (max-width: 640px) { .why-grid { grid-template-columns: 1fr; } }
+
+  .why-item {
+    background: var(--card);
+    border: 1px solid rgba(196,181,244,0.08);
+    border-radius: 16px;
+    padding: 1.6rem;
+    display: flex; gap: 1rem; align-items: flex-start;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .why-item:hover { border-color: rgba(196,181,244,0.2); transform: translateY(-3px); }
+  .why-check { font-size: 1.4rem; flex-shrink: 0; }
+  .why-content-title { font-weight: 600; margin-bottom: 0.3rem; font-size: 0.95rem; }
+  .why-content-desc { font-size: 0.84rem; color: rgba(250,247,242,0.5); line-height: 1.6; }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: linear-gradient(135deg, #1a1042 0%, #0d1520 50%, #1a0d1a 100%);
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .cta-section .blob { opacity: 0.2; }
+  .cta-inner { position: relative; z-index: 2; }
+  .cta-headline {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+  }
+  .cta-headline em { font-style: italic; color: var(--lavender); font-weight: 300; }
+  .cta-sub { color: rgba(250,247,242,0.55); margin-bottom: 2.5rem; font-size: 1.05rem; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy);
+    border-top: 1px solid rgba(196,181,244,0.08);
+    padding: 3rem 5vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  .footer-logo {
+    font-family: 'Fraunces', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--cream);
+  }
+  .footer-logo span { color: var(--lavender); font-style: italic; }
+  .footer-links { display: flex; gap: 2rem; flex-wrap: wrap; }
+  .footer-links a { text-decoration: none; color: rgba(250,247,242,0.4); font-size: 0.85rem; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--lavender); }
+  .footer-copy { font-size: 0.78rem; color: rgba(250,247,242,0.3); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav ul { display: none; }
+    .services-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    footer { flex-direction: column; text-align: center; }
+  }
+  @media (max-width: 480px) {
+    .process-steps { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .blob, .marquee-inner { animation: none; }
+  }
+  .consultation{
+
+padding:120px 5vw;
+
+background:#0D0E1A;
+
+display:flex;
+
+justify-content:center;
+
+}
+
+.consultation-card{
+
+max-width:850px;
+
+width:100%;
+
+background:#171930;
+
+padding:60px;
+
+border-radius:28px;
+
+border:1px solid rgba(255,255,255,.08);
+
+backdrop-filter:blur(25px);
+
+}
+
+.consultation form{
+
+margin-top:40px;
+
+display:flex;
+
+flex-direction:column;
+
+gap:18px;
+
+}
+
+.consultation input,
+
+.consultation textarea,
+
+.consultation select{
+
+width:100%;
+
+padding:18px;
+
+background:#101220;
+
+border:1px solid rgba(255,255,255,.08);
+
+border-radius:16px;
+
+font-size:16px;
+
+color:white;
+
+font-family:inherit;
+
+outline:none;
+
+transition:.25s;
+
+}
+
+.consultation input:focus,
+
+.consultation textarea:focus,
+
+.consultation select:focus{
+
+border-color:#C4B5F4;
+
+box-shadow:0 0 30px rgba(196,181,244,.2);
+
+}
+</style>
+</head>
+<body>
+
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Lucentia<span>.</span></div>
+  <ul>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#contact" class="nav-cta">Let's Talk</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">The "IT" Girls of Social Media</div>
+    <h1 class="hero-headline">
+      We make your<br>
+      brand <span class="hl-light">glow</span><span class="hl-coral">.</span>
+    </h1>
+    <p class="hero-sub">Social media that connects. Websites that convert. Strategies built around you — not a template.</p>
+    <div class="hero-actions">
+<a href="#consultation" class="btn-primary">
+    Book Free Consultation ✦
+</a>
+      <a href="#services" class="btn-ghost">See Our Services →</a>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    <span class="marquee-item">Social Media Management</span>
+    <span class="marquee-item">Reel Editing</span>
+    <span class="marquee-item">Brand Strategy</span>
+    <span class="marquee-item">Website Design</span>
+    <span class="marquee-item">Content Creation</span>
+    <span class="marquee-item">Growth Strategy</span>
+    <span class="marquee-item">Graphic Design</span>
+    <span class="marquee-item">Social Media Management</span>
+    <span class="marquee-item">Reel Editing</span>
+    <span class="marquee-item">Brand Strategy</span>
+    <span class="marquee-item">Website Design</span>
+    <span class="marquee-item">Content Creation</span>
+    <span class="marquee-item">Growth Strategy</span>
+    <span class="marquee-item">Graphic Design</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-label">What We Do</div>
+  <h2 class="section-title">Two pillars.<br><em>Infinite possibilities.</em></h2>
+  <p class="section-desc">Everything your brand needs to show up, stand out, and grow — under one studio roof.</p>
+
+  <div class="services-grid">
+    <div class="service-card lavender">
+      <div class="card-icon lav-bg">📱</div>
+      <div class="card-tag">Service 01</div>
+      <h3 class="card-title">Social Media Management</h3>
+      <p class="card-body">Your brand's voice, identity, and relationship with your audience — managed strategically from content to community.</p>
+      <div class="pill-list">
+        <span class="pill lav">Brand Strategy</span>
+        <span class="pill lav">Content Design</span>
+        <span class="pill lav">Reel Editing</span>
+        <span class="pill lav">Account Growth</span>
+      </div>
+    </div>
+
+    <div class="service-card coral">
+      <div class="card-icon coral-bg">🌐</div>
+      <div class="card-tag">Service 02</div>
+      <h3 class="card-title">Website Development</h3>
+      <p class="card-body">Modern, responsive static websites that showcase your brand, highlight your work, and turn visitors into customers.</p>
+      <div class="pill-list">
+        <span class="pill cor">Business Sites</span>
+        <span class="pill cor">Portfolios</span>
+        <span class="pill cor">Landing Pages</span>
+      </div>
+    </div>
+
+    <div class="service-card sage" style="grid-column: 1 / -1;">
+      <div class="card-icon sage-bg">✨</div>
+      <div class="card-tag">Flexible</div>
+      <h3 class="card-title">Customisable Packages</h3>
+      <p class="card-body">Need just reel editing? A full social + website bundle? We build a plan around your goals and budget — no cookie-cutter packages here.</p>
+      <div class="pill-list">
+        <span class="pill sag">Single Services</span>
+        <span class="pill sag">Full Bundles</span>
+        <span class="pill sag">Startup Friendly</span>
+        <span class="pill sag">Scalable</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tabs-wrap">
+    <div class="section-label" style="margin-top:3rem;">Explore Details</div>
+    <h3 class="section-title" style="font-size: clamp(1.6rem, 3.5vw, 2.5rem); margin-bottom: 2rem;">Everything included<span class="coral">.</span></h3>
+
+    <div class="tabs-nav">
+      <button class="tab-btn active" onclick="switchTab('strategy', this)">Brand Strategy</button>
+      <button class="tab-btn" onclick="switchTab('content', this)">Content & Design</button>
+      <button class="tab-btn" onclick="switchTab('video', this)">Video & Reels</button>
+      <button class="tab-btn" onclick="switchTab('growth', this)">Account Growth</button>
+      <button class="tab-btn" onclick="switchTab('website', this)">Website Dev</button>
+    </div>
+
+    <div id="tab-strategy" class="tab-panel active">
+      <div class="sub-card"><span class="sub-icon">🔍</span><span class="sub-text">Brand analysis & positioning</span></div>
+      <div class="sub-card"><span class="sub-icon">🎯</span><span class="sub-text">Target audience research</span></div>
+      <div class="sub-card"><span class="sub-icon">📊</span><span class="sub-text">Competitor research</span></div>
+      <div class="sub-card"><span class="sub-icon">🗓️</span><span class="sub-text">Monthly content calendars</span></div>
+      <div class="sub-card"><span class="sub-icon">🚀</span><span class="sub-text">Campaign & launch planning</span></div>
+      <div class="sub-card"><span class="sub-icon">📈</span><span class="sub-text">Trend & market insights</span></div>
+    </div>
+
+    <div id="tab-content" class="tab-panel">
+      <div class="sub-card"><span class="sub-icon">🖼️</span><span class="sub-text">Instagram posts & carousels</span></div>
+      <div class="sub-card"><span class="sub-icon">🎨</span><span class="sub-text">Promotional graphics</span></div>
+      <div class="sub-card"><span class="sub-icon">📦</span><span class="sub-text">Product showcases</span></div>
+      <div class="sub-card"><span class="sub-icon">💡</span><span class="sub-text">Story templates & highlights</span></div>
+      <div class="sub-card"><span class="sub-icon">🍽️</span><span class="sub-text">Menu & catalogue designs</span></div>
+      <div class="sub-card"><span class="sub-icon">📣</span><span class="sub-text">Offer & announcement creatives</span></div>
+    </div>
+
+    <div id="tab-video" class="tab-panel">
+      <div class="sub-card"><span class="sub-icon">🎬</span><span class="sub-text">Instagram Reels editing</span></div>
+      <div class="sub-card"><span class="sub-icon">▶️</span><span class="sub-text">YouTube Shorts editing</span></div>
+      <div class="sub-card"><span class="sub-icon">🎵</span><span class="sub-text">Trending audio integration</span></div>
+      <div class="sub-card"><span class="sub-icon">✍️</span><span class="sub-text">Text animations & subtitles</span></div>
+      <div class="sub-card"><span class="sub-icon">🖼️</span><span class="sub-text">Reel covers & thumbnails</span></div>
+      <div class="sub-card"><span class="sub-icon">🎞️</span><span class="sub-text">Professional cuts & transitions</span></div>
+    </div>
+
+    <div id="tab-growth" class="tab-panel">
+      <div class="sub-card"><span class="sub-icon">⚡</span><span class="sub-text">Profile optimisation & bio</span></div>
+      <div class="sub-card"><span class="sub-icon">📅</span><span class="sub-text">Posting & scheduling</span></div>
+      <div class="sub-card"><span class="sub-icon">✏️</span><span class="sub-text">Caption writing & hashtags</span></div>
+      <div class="sub-card"><span class="sub-icon">💬</span><span class="sub-text">Community engagement</span></div>
+      <div class="sub-card"><span class="sub-icon">📉</span><span class="sub-text">Monthly analytics reports</span></div>
+      <div class="sub-card"><span class="sub-icon">🌱</span><span class="sub-text">Growth recommendations</span></div>
+    </div>
+
+    <div id="tab-website" class="tab-panel">
+      <div class="sub-card"><span class="sub-icon">🏢</span><span class="sub-text">Company & catalogue websites</span></div>
+      <div class="sub-card"><span class="sub-icon">📱</span><span class="sub-text">Responsive mobile design</span></div>
+      <div class="sub-card"><span class="sub-icon">📩</span><span class="sub-text">Contact & WhatsApp integration</span></div>
+      <div class="sub-card"><span class="sub-icon">🗺️</span><span class="sub-text">Google Maps integration</span></div>
+      <div class="sub-card"><span class="sub-icon">🚀</span><span class="sub-text">Domain, hosting & launch support</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" class="process-bg">
+  <div class="section-label">How It Works</div>
+  <h2 class="section-title">Simple process.<br><em>Exceptional results.</em></h2>
+
+  <div class="process-steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-title">Free Discovery Call</div>
+      <p class="step-desc">We start by understanding your business, goals, audience, and requirements — no pressure, just conversation.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-title">Strategy & Proposal</div>
+      <p class="step-desc">We craft a customised plan and package that aligns with your brand, vision, and budget.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-title">Create & Develop</div>
+      <p class="step-desc">We design, edit, build, and refine with attention to every detail of your brand identity.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-title">Launch & Grow</div>
+      <p class="step-desc">We launch your digital presence and continue with insights and support for ongoing growth.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="section-label">Why Lucentia</div>
+  <h2 class="section-title">Built different<span class="coral">.</span></h2>
+  <p class="section-desc">We're not a factory. Every client gets a real strategy, real design, and real attention.</p>
+
+  <div class="why-grid">
+    <div class="why-item">
+      <span class="why-check"></span>
+      <div>
+        <div class="why-content-title">Personalised strategies</div>
+        <div class="why-content-desc">No templates. No copy-paste. Every plan is built from scratch around your specific brand and goals.</div>
+      </div>
+    </div>
+    <div class="why-item">
+      <span class="why-check"></span>
+      <div>
+        <div class="why-content-title">Fully customisable packages</div>
+        <div class="why-content-desc">Whether you need one service or the whole suite, your package is shaped around your budget and ambitions.</div>
+      </div>
+    </div>
+    <div class="why-item">
+      <span class="why-check"></span>
+      <div>
+        <div class="why-content-title">One roof, everything included</div>
+        <div class="why-content-desc">Social media, content, websites, and strategy — you don't need four agencies when you have Lucentia.</div>
+      </div>
+    </div>
+    <div class="why-item">
+      <span class="why-check"></span>
+      <div>
+        <div class="why-content-title">Modern, trend-aware aesthetics</div>
+        <div class="why-content-desc">We obsess over design trends so your content always feels fresh, current, and premium.</div>
+      </div>
+    </div>
+    <div class="why-item">
+      <span class="why-check"></span>
+      <div>
+        <div class="why-content-title">Direct, collaborative communication</div>
+        <div class="why-content-desc">You talk to the people doing the work — no account managers, no delays, no guesswork.</div>
+      </div>
+    </div>
+    <div class="why-item">
+      <span class="why-check"></span>
+      <div>
+        <div class="why-content-title">Startup & small business friendly</div>
+        <div class="why-content-desc">Affordable without cutting corners. We believe great design shouldn't be reserved for big budgets.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="contact" class="cta-section">
+  <div class="blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+  </div>
+  <div class="cta-inner">
+    <div class="section-label" style="justify-content:center;">Get Started</div>
+    <h2 class="cta-headline">
+      Ready to<br><em>light up</em> your brand?
+    </h2>
+    <p class="cta-sub">Book a free 1:1 consultation. No commitment, no jargon — just a real conversation about your vision.</p>
+
+   <a href="#consultation"
+   class="btn-primary"
+   style="font-size:1.05rem;padding:1.1rem 2.8rem;">
+   Book Free Consultation ✦
+</a>
+    <p style="margin-top:1.5rem; font-size:0.82rem; color:rgba(250,247,242,0.3);">Free discovery call · No commitment · Personalised plan</p>
+  </div>
+</section>
+<section id="consultation" class="consultation">
+
+<div class="consultation-card">
+
+<div class="section-label">
+Book Your Consultation
+</div>
+
+<h2 class="section-title">
+Let's build something
+<em>beautiful.</em>
+</h2>
+
+<p class="section-desc">
+Tell us about your business and we'll get back to you within 24 hours.
+</p>
+
+<form action="https://formsubmit.co/aananyat2008@gmail.com" method="POST">
+
+<input type="text" placeholder="Your Name" required>
+
+<input type="email" placeholder="Email Address" required>
+
+<input type="tel" placeholder="Phone Number" required>
+
+<select>
+
+<option>Select a Service</option>
+
+<option>Social Media Management</option>
+
+<option>Website Development</option>
+
+<option>Brand Strategy</option>
+
+<option>Custom Package</option>
+
+</select>
+
+<textarea placeholder="Tell us about your project..." rows="6"></textarea>
+
+<button class="btn-primary" type="submit">
+Book Consultation ✦
+</button>
+
+</form>
+
+</div>
+
+</section>
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Lucentia<span>.</span></div>
+  <div class="footer-links">
+    <a href="#services">Services</a>
+    <a href="#process">Process</a>
+    <a href="#why">Why Us</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="footer-copy">© 2025 Lucentia Studio. All rights reserved.</div>
+</footer>
+
+<script>
+
+function switchTab(name, button){
+
+    document.querySelectorAll(".tab-btn").forEach(btn=>{
+        btn.classList.remove("active");
+    });
+
+    document.querySelectorAll(".tab-panel").forEach(panel=>{
+        panel.classList.remove("active");
+    });
+
+    document.getElementById("tab-"+name).classList.add("active");
+
+    button.classList.add("active");
+
+}
+
+document.querySelectorAll("a").forEach(link=>{
+
+    if(
+        link.getAttribute("href").endsWith(".html")
+    ){
+
+        link.addEventListener("click",function(e){
+
+            e.preventDefault();
+
+            overlay.classList.add("active");
+
+            const destination=this.href;
+
+            setTimeout(()=>{
+                window.location.href=destination;
+            },600);
+
+        });
+
+    }
+
+});
+
+</script>
+</body>
+</html>
