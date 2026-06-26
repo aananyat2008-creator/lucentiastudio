@@ -811,41 +811,60 @@ Let's build something
 Tell us about your business and we'll get back to you within 24 hours.
 </p>
 
-  <form action="https://formsubmit.co/aananyat2008@gmail.com" method="POST">
+<form
+  action="https://formsubmit.co/aananyat2008@gmail.com"
+  method="POST"
+>
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_subject" value="New Lucentia Studio Inquiry">
+  <input type="hidden" name="_template" value="table">
 
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_subject" value="New Lucentia Studio Inquiry">
-    <input type="hidden" name="_template" value="table">
+  <input
+    type="text"
+    name="name"
+    placeholder="Your Name"
+    required
+  >
 
-<input type="text" name="name" placeholder="Your Name" required>
+  <input
+    type="email"
+    name="email"
+    placeholder="Email Address"
+    required
+  >
 
-<input type="email" name="email" placeholder="Email Address" required>
+  <input
+    type="tel"
+    name="phone"
+    placeholder="Phone Number"
+    required
+  >
 
-<input type="tel" name="phone" placeholder="Phone Number" required>
+  <select name="service" required>
+    <option value="">Select a Service</option>
+    <option value="Social Media Management">
+      Social Media Management
+    </option>
+    <option value="Website Development">
+      Website Development
+    </option>
+    <option value="Brand Strategy">
+      Brand Strategy
+    </option>
+    <option value="Custom Package">
+      Custom Package
+    </option>
+  </select>
 
-<select name="service" required>
-
-<option>Select a Service</option>
-
-<option>Social Media Management</option>
-
-<option>Website Development</option>
-
-<option>Brand Strategy</option>
-
-<option>Custom Package</option>
-
-</select>
-
-<textarea
+  <textarea
     name="message"
     placeholder="Tell us about your project"
     required
-></textarea>
-<button class="btn-primary" type="submit">
-Book Consultation ✦
-</button>
+  ></textarea>
 
+  <button type="submit" class="btn-primary">
+    Book Consultation ✦
+  </button>
 </form>
 
 </div>
